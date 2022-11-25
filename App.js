@@ -1,26 +1,40 @@
+//Main
+
 import 'react-native-gesture-handler';
 import * as React from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
+//Navigation
+
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Entypo, FontAwesome, MaterialIcons, MaterialCommunityIcons, Ionicons, FontAwesome5, EvilIcons } from '@expo/vector-icons';
+
+
+//Redux logic
+
+import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from './state/store';
+
+//Common ground
 
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
+import { Entypo, FontAwesome, MaterialIcons, MaterialCommunityIcons, Ionicons, FontAwesome5, EvilIcons } from '@expo/vector-icons';
+
+
+
+//Screens
 
 import OffersScreen from './screens/OffersScreen'
 import CombosScreen from './screens/CombosScreen'
 import BeveragesScreen from './screens/BeveragesScreen'
-import LoginScreen from './screens/LoginScreen'
 import MenuScreen from './screens/MenuScreen'
 import SettingsScreen from './screens/SettingsScreen'
 import UserScreen from './screens/UserScreen'
 import PickupScreen from './screens/PickupScreen'
 import CouponsScreen from './screens/CouponsScreen'
-import WildcardScreen from './screens/WildcardScreen'
-import WildcardScreenBis from './screens/WildcardScreenBis'
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -114,14 +128,19 @@ const Tabs = () => {
 }
 
 export default function App() {
+  
   return (
-    <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Root">
-        <Drawer.Screen name="Restaurante" component={Tabs} />
-        <Drawer.Screen name="Mi perfil" component={UserStack} />
-        <Drawer.Screen name="Cupones" component={CouponsScreen} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      <PersistGate persistor={persistor} loading={null}>
+        <NavigationContainer>
+          <Drawer.Navigator initialRouteName="Root">
+            <Drawer.Screen name="Restaurante" component={Tabs} />
+            <Drawer.Screen name="Mi perfil" component={UserStack} />
+            <Drawer.Screen name="Cupones" component={CouponsScreen} />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </PersistGate>
+    </Provider>
   );
 }
 

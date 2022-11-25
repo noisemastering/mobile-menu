@@ -3,6 +3,7 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyCqojvLFP9nPumCj9dQhKVoZztKq6Id3cE",
   authDomain: "cartelerareact.firebaseapp.com",

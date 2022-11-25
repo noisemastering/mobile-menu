@@ -14,7 +14,7 @@ const ListElement = (props) => {
                 source={{uri: props.image}}
             />
             <View style={styles.eventTitleContainer}>
-                <Text style={styles.labelEventTitle}>{props.name}</Text>
+                <Text style={styles.labelEventTitle}>{props.title}</Text>
                 <Text style={styles.labelEventCatergory}>{props.category}</Text>
             </View>
             <View style={{...styles.eventInfoContainer,marginBottom:5}}>
